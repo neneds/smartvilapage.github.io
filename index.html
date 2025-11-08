@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Vila Madalena — Guest Onboarding</title>
+  <style>
+    :root{--charcoal:#2d3748;--warm-orange:#ff8c42;--soft-blue:#4a90e2;--light-gray:#f8fafc;--card:#ffffff;--accent-gold:#d4af37}
+    *{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    body{margin:0;background:linear-gradient(180deg,#f8fafc 0%, #fff 40%);color:#2d3748}
+    .wrap{max-width:900px;margin:32px auto;padding:28px}
+
+    .lang-selector{display:flex;justify-content:center;gap:16px;margin-bottom:24px;padding:16px;background:rgba(255,255,255,0.8);border-radius:12px;backdrop-filter:blur(10px)}
+    .lang-flag{width:48px;height:36px;border-radius:8px;cursor:pointer;transition:all 0.3s ease;border:3px solid transparent;display:flex;align-items:center;justify-content:center;position:relative}
+    .lang-flag:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+    .lang-flag.active{border-color:var(--warm-orange);transform:scale(1.05);box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+    .lang-flag::after{content:'';position:absolute;inset:2px;border-radius:5px}
+    
+    .lang-content{display:none}
+    .lang-content.active{display:block}
+
+    header{display:flex;gap:20px;align-items:center}
+    .hero{background:var(--charcoal);color:#fff;padding:22px;border-radius:18px;flex:1;position:relative;overflow:hidden}
+    .hero h1{margin:0;font-size:34px;letter-spacing:0.02em}
+    .hero p{margin:8px 0 0;font-size:15px;opacity:0.95}
+    .badge{background:var(--warm-orange);color:#fff;padding:10px 16px;border-radius:999px;font-weight:600;font-size:16px}
+    .photo{width:220px;height:140px;border-radius:14px;overflow:hidden;flex-shrink:0}
+    .photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+    .card{background:var(--card);padding:16px;border-radius:14px;box-shadow:0 6px 18px rgba(10,20,40,0.06)}
+    .card h3{margin:0 0 8px;font-size:16px}
+    .muted{color:#666;font-size:13px}
+
+    .icons{display:flex;gap:10px;margin-top:12px}
+    .icon{width:42px;height:42px;border-radius:10px;background:var(--light-gray);display:flex;align-items:center;justify-content:center}
+
+    .lang-row{display:flex;gap:12px;align-items:flex-start}
+    .pill{padding:6px 10px;border-radius:10px;background:#fff;box-shadow:inset 0 -2px 0 rgba(0,0,0,0.02);font-weight:700}
+    .flag{width:20px;height:15px;border-radius:3px;margin-right:8px;display:inline-block;vertical-align:middle}
+
+    .section-title{font-size:18px;margin:10px 0 8px}
+
+    .list{padding-left:16px;margin:8px 0}
+    .list li{margin:6px 0}
+
+    .phrase{background:linear-gradient(90deg, #fff, #fff);padding:12px;border-radius:10px;border:1px dashed rgba(0,0,0,0.06);font-weight:600}
+    
+    .faq-answer{background:var(--light-gray);padding:8px 12px;border-radius:8px;border-left:4px solid var(--warm-orange);font-weight:500;color:var(--charcoal)}
+
+    footer{margin-top:18px;display:flex;gap:12px;align-items:center}
+    .cta{background:var(--soft-blue);color:#fff;padding:10px 14px;border-radius:12px;font-weight:700;text-decoration:none}
+
+    /* responsive */
+    @media (max-width:760px){
+      .grid{grid-template-columns:1fr}
+      .hero h1{font-size:26px}
+      .photo{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Language Selector -->
+    <div class="lang-selector">
+      <div class="lang-flag active" data-lang="pt" title="Português">
+        <div style="background: linear-gradient(to bottom, #009c3b 33%, #ffd700 33%, #ffd700 66%, #009c3b 66%); width:100%; height:100%; border-radius:5px;"></div>
+      </div>
+      <div class="lang-flag" data-lang="en" title="English">
+        <div style="background: linear-gradient(to bottom, #012169 33%, #fff 33%, #fff 66%, #c8102e 66%); width:100%; height:100%; border-radius:5px;"></div>
+      </div>
+      <div class="lang-flag" data-lang="es" title="Español">
+        <div style="background: linear-gradient(to bottom, #c60b1e 33%, #ffc400 33%, #ffc400 66%, #c60b1e 66%); width:100%; height:100%; border-radius:5px;"></div>
+      </div>
+    </div>
+
+    <header>
+      <div class="hero">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div>
+            <h1 style="margin:0;font-size:28px;font-weight:700;color:#fff;line-height:1.2">Smart Vila Madalena</h1>
+            <p style="margin:4px 0 16px;font-size:14px;opacity:0.8;color:#fff">Rua Paulistânia, 215 - Vila Madalena, São Paulo - SP, 05440-000</p>
+            
+            <!-- Portuguese Content -->
+            <div class="lang-content active" data-lang="pt">
+              <h2 style="margin:0;font-size:24px;font-weight:600;color:#fff">Bem-vindo ao seu lar longe de casa</h2>
+              <p>Check-in rápido, equipe de recepção amigável — e algumas dicas para você se sentir como um local instantaneamente.</p>
+            </div>
+            
+            <!-- English Content -->
+            <div class="lang-content" data-lang="en">
+              <h2 style="margin:0;font-size:24px;font-weight:600;color:#fff">Welcome to your home away from home</h2>
+              <p>Fast check-in, friendly lobby team — and a few tips so you'll feel like a local instantly.</p>
+            </div>
+            
+            <!-- Spanish Content -->
+            <div class="lang-content" data-lang="es">
+              <h2 style="margin:0;font-size:24px;font-weight:600;color:#fff">Bienvenido a tu hogar lejos del hogar</h2>
+              <p>Check-in rápido, equipo de recepción amigable — y algunos consejos para que te sientas como un local al instante.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid" style="margin-top:22px">
+      <div class="card">
+        <!-- Portuguese Content -->
+        <div class="lang-content active" data-lang="pt">
+          <h3>Check-in rápido (O que a recepção precisa)</h3>
+          <ul class="list">
+            <li><strong>Número do apartamento</strong> onde você ficará</li>
+            <li><strong>Período da estadia</strong> (datas)</li>
+          </ul>
+          <p class="muted">Para <em>cada</em> hóspede:</p>
+          <ul class="list">
+            <li>Nome completo</li>
+            <li>Documento de identificação (mostrado à equipe)</li>
+            <li>Uma foto rápida tirada na recepção para acesso ao prédio</li>
+          </ul>
+        </div>
+        
+        <!-- English Content -->
+        <div class="lang-content" data-lang="en">
+          <h3>Quick Check-in (What reception needs)</h3>
+          <ul class="list">
+            <li><strong>Apartment number</strong> where you'll be staying</li>
+            <li><strong>Stay period</strong> (dates)</li>
+          </ul>
+          <p class="muted">For <em>each</em> guest:</p>
+          <ul class="list">
+            <li>Full name</li>
+            <li>Identification document (shown to staff)</li>
+            <li>A quick photo taken at reception for building access</li>
+          </ul>
+        </div>
+        
+        <!-- Spanish Content -->
+        <div class="lang-content" data-lang="es">
+          <h3>Check-in rápido (Lo que necesita recepción)</h3>
+          <ul class="list">
+            <li><strong>Número del apartamento</strong> donde se hospedará</li>
+            <li><strong>Período de estadía</strong> (fechas)</li>
+          </ul>
+          <p class="muted">Para <em>cada</em> huésped:</p>
+          <ul class="list">
+            <li>Nombre completo</li>
+            <li>Documento de identificación (mostrado al personal)</li>
+            <li>Una foto rápida tomada en recepción para acceso al edificio</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:12px" class="icons">
+          <div class="icon" title="ID"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="16" rx="2" stroke="#444" stroke-width="1.5"/><circle cx="9" cy="10" r="2" stroke="#444" stroke-width="1.5"/><path d="M13 8h6" stroke="#444" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="icon" title="Foto"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="#444" stroke-width="1.5"/><path d="M7 9l3 4 2-2 5 5" stroke="#444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="icon" title="Ayuda"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 20a8 8 0 100-16 8 8 0 000 16z" stroke="#444" stroke-width="1.5"/><path d="M9.5 10a2.5 2.5 0 015 0c0 2-2 2-2 3" stroke="#444" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <!-- Portuguese Content -->
+        <div class="lang-content active" data-lang="pt">
+          <h3 class="section-title">Perguntas Frequentes</h3>
+          <p><strong>P:</strong>Depois de finalizar o check-in, se eu for sair, como eu entro ao chegar?</p>
+          <p class="faq-answer"><strong>R:</strong> Diga seu <em>nome</em> e <em>número do apartamento</em> na recepção. Eles abrirão a porta.</p>
+
+          <p style="margin-top:10px"><strong>P:</strong> Como uso a lavanderia?</p>
+          <p class="faq-answer"><strong>R:</strong> Peça na recepção um <em>cartão com código QR</em> para usar as máquinas.</p>
+
+          <p style="margin-top:10px"><strong>P:</strong> Como encontrar a lixeira?</p>
+          <p class="faq-answer"><strong>R:</strong> Desça ao 1º subsolo e, ao sair do elevador, vire à esquerda. No primeiro corredor, novamente à esquerda. Será a primeira porta à direita.</p>
+        </div>
+        
+        <!-- English Content -->
+        <div class="lang-content" data-lang="en">
+          <h3 class="section-title">Frequently Asked Questions</h3>
+          <p><strong>Q:</strong> I arrive after check-in hours, how do I get in?</p>
+          <p class="faq-answer"><strong>A:</strong> Tell reception your <em>name</em> and <em>apartment number</em>. They will open the door.</p>
+
+          <p style="margin-top:10px"><strong>Q:</strong> I don't speak Portuguese — what do I say to get in?</p>
+          <div class="phrase" style="margin-top:8px;background:var(--light-gray)">"Oi, eu não falo português, meu nome é <strong>YOUR NAME</strong>, estou hospedado no apartamento <strong>APARTMENT NUMBER</strong>. Você pode abrir, por favor?"</div>
+
+          <p style="margin-top:10px"><strong>Q:</strong> How do I use the laundry?</p>
+          <p class="faq-answer"><strong>A:</strong> Ask reception for a <em>QR code card</em> to use the machines.</p>
+
+          <p style="margin-top:10px"><strong>Q:</strong> How to find the trash area?</p>
+          <p class="faq-answer"><strong>A:</strong> Go down to the 1st basement level and, when exiting the elevator, turn left. At the first corridor, turn left again. It will be the first door on the right.</p>
+        </div>
+        
+        <!-- Spanish Content -->
+        <div class="lang-content" data-lang="es">
+          <h3 class="section-title">Preguntas frecuentes</h3>
+          <p><strong>P:</strong> Llego después del horario de check-in, ¿cómo entro?</p>
+          <p class="faq-answer"><strong>R:</strong> Diga su <em>nombre</em> y <em>número del apartamento</em> a recepción. Ellos le abrirán la puerta.</p>
+
+          <p style="margin-top:10px"><strong>P:</strong> No hablo portugués — ¿qué digo para entrar?</p>
+          <div class="phrase" style="background:var(--light-gray)">"Oi, eu não falo português, meu nome é <strong>SU NOMBRE</strong>, estou hospedado no apartamento <strong>NÚMERO APARTAMENTO</strong>. Você pode abrir, por favor?"</div>
+
+          <p style="margin-top:10px"><strong>P:</strong> ¿Cómo uso la lavandería?</p>
+          <p class="faq-answer"><strong>R:</strong> Pida en recepción una <em>tarjeta con código QR</em> para usar las máquinas.</p>
+
+          <p style="margin-top:10px"><strong>P:</strong> ¿Cómo encontrar el área de basura?</p>
+          <p class="faq-answer"><strong>R:</strong> Baje al 1er sótano y, al salir del ascensor, gire a la izquierda. En el primer pasillo, nuevamente a la izquierda. Será la primera puerta a la derecha.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <!-- Portuguese Content -->
+        <div class="lang-content active" data-lang="pt">
+          <h3 class="section-title">Dicas & Informações Úteis</h3>
+          <ul class="list">
+            <li>Mantenha uma foto da sua reserva no celular — evidência rápida.</li>
+            <li>Se espera chegadas tardias, deixe uma observação na reserva com o horário de chegada.</li>
+          </ul>
+
+          <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="18" rx="3" stroke="var(--charcoal)" stroke-width="1.2"/><path d="M8 9h8M8 13h5" stroke="var(--charcoal)" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <div>
+              <strong>Precisa de uma versão PDF?</strong>
+              <div class="muted">Esta página imprime corretamente — pressione ⌘/Ctrl+P e escolha "Salvar como PDF".</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- English Content -->
+        <div class="lang-content" data-lang="en">
+          <h3 class="section-title">Tips & Nice-to-know</h3>
+          <ul class="list">
+            <li>Keep a photo of your reservation on your phone — quick evidence.</li>
+            <li>If you expect late arrivals, leave a note in your reservation with arrival time.</li>
+          </ul>
+
+          <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="18" rx="3" stroke="var(--charcoal)" stroke-width="1.2"/><path d="M8 9h8M8 13h5" stroke="var(--charcoal)" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <div>
+              <strong>Need a PDF version?</strong>
+              <div class="muted">This page prints cleanly — press ⌘/Ctrl+P and choose "Save as PDF".</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Spanish Content -->
+        <div class="lang-content" data-lang="es">
+          <h3 class="section-title">Consejos y datos útiles</h3>
+          <ul class="list">
+            <li>Mantenga una foto de su reserva en su teléfono — evidencia rápida.</li>
+            <li>Si espera llegadas tardías, deje una nota en su reserva con la hora de llegada.</li>
+          </ul>
+
+          <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="18" rx="3" stroke="var(--charcoal)" stroke-width="1.2"/><path d="M8 9h8M8 13h5" stroke="var(--charcoal)" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <div>
+              <strong>¿Necesita una versión PDF?</strong>
+              <div class="muted">Esta página se imprime correctamente — presione ⌘/Ctrl+P y seleccione "Guardar como PDF".</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <!-- Portuguese Content -->
+      <div class="lang-content active" data-lang="pt">
+        <a href="#" class="cta">Salvar esta página</a>
+      </div>
+      
+      <!-- English Content -->
+      <div class="lang-content" data-lang="en">
+        <a href="#" class="cta">Save this page</a>
+      </div>
+      
+      <!-- Spanish Content -->
+      <div class="lang-content" data-lang="es">
+        <a href="#" class="cta">Guardar esta página</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Language switching functionality
+    function switchLanguage(lang) {
+      // Hide all content for all languages
+      document.querySelectorAll('.lang-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      
+      // Show content for selected language
+      document.querySelectorAll(`.lang-content[data-lang="${lang}"]`).forEach(content => {
+        content.classList.add('active');
+      });
+      
+      // Update active flag
+      document.querySelectorAll('.lang-flag').forEach(flag => {
+        flag.classList.remove('active');
+      });
+      document.querySelector(`.lang-flag[data-lang="${lang}"]`).classList.add('active');
+      
+      // Store selected language in localStorage
+      localStorage.setItem('selectedLanguage', lang);
+    }
+    
+    // Initialize language selection
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get saved language or default to Portuguese
+      const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
+      
+      // Set up click handlers for language flags
+      document.querySelectorAll('.lang-flag').forEach(flag => {
+        flag.addEventListener('click', function() {
+          const lang = this.dataset.lang;
+          switchLanguage(lang);
+        });
+      });
+      
+      // Initialize with saved or default language
+      switchLanguage(savedLang);
+    });
+  </script>
+</body>
+</html>
