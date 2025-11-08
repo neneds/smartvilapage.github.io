@@ -313,6 +313,14 @@
       
       // Initialize with saved or default language
       switchLanguage(savedLang);
+      
+      // Add print functionality to the "Save this page" button
+      document.querySelectorAll('.cta').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.print();
+        });
+      });
     });
   </script>
 </body>
